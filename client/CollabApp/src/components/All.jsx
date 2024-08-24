@@ -1,6 +1,8 @@
 import Card from "./Card";
 import Navbar from "./Navbar";
 import "../../public/All.css";
+import { useEffect } from "react";
+import axios from "axios";
 
 
 function All(props) {
@@ -28,6 +30,29 @@ function All(props) {
             img: "https://picsum.photos/50"
         }
     ]
+    useEffect(()=>{
+
+      const config={
+        withCredentials:true,
+        headers:{
+            "Content-Type":"application/json",
+        }
+      };
+      const myFetch=async()=>{
+        try{
+          const {data}=await axios.get(`http://localhost:3000/project/getall`,config);
+          console.log(data.data);
+          
+  
+        }
+        catch(e){
+          console.log(e);
+          
+        }
+      }
+      myFetch();
+      
+    },[])
 
   return (
     <div>

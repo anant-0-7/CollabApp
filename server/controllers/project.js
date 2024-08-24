@@ -72,7 +72,7 @@ const leaveProject=tryCatch(async(req,res,next)=>{
 
 })
 
-const getAllProjects=tryCatch(async(res,req,next)=>{
+const getAllProjects=tryCatch(async(req,res,next)=>{
     const projects=await Project.find().populate();
     return res.status(200).json({
         success:true,
