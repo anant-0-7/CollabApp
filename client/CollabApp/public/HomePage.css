@@ -1,0 +1,23 @@
+html, body {
+    height: 100%;
+    margin: 0; /* Ensures no default margin around the body */
+  }
+  
+  body {
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  }
+
+  
+/* Ensures the buttons are centered */
+.btn {
+    margin: 10px; /* Adds some space between the buttons */
+  }
+  
+  /* Centers the button container */
+  .btn-container {
+    display: flex;
+    justify-content: center; /* Centers the buttons horizontally */
+    align-items: center; /* Centers the buttons vertically within the container */
+    margin-top: 20px; /* Adjust as needed for spacing */
+  }
+  
