@@ -9,6 +9,7 @@ import Signup from './components/Signup';
 import ProtectRoute from './components/auth/ProtectRoute';
 import axios from 'axios';
 import { userExists, userNotExists } from './redux/reducers/auth';
+import All from "./components/All";
 
 function App () {
   const {user}=useSelector((state)=>state.auth);
