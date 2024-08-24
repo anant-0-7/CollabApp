@@ -1,0 +1,34 @@
+/* Remove the background color from the navbar */
+.navbar-container {
+    background-color: transparent !important; /* Make the navbar background transparent */
+  }
+  
+  /* Style the navbar itself to have no background */
+  .navbar {
+    background-color: transparent !important; /* Ensure the navbar has no background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow to the navbar */
+  }
+  
+  /* Style the buttons or links within the navbar */
+  .navbar .nav-link,
+  .navbar .navbar-brand {
+    color: #ffffff !important; /* Set the text color for buttons and links */
+    transition: color 0.3s ease, transform 0.3s ease; /* Add transition for hover animation */
+  }
+  
+  /* Hover effect for navbar links and brand */
+  .navbar .nav-link:hover,
+  .navbar .navbar-brand:hover {
+    color: #ffa500 !important; /* Change the text color on hover */
+    transform: scale(1.1); /* Slightly scale up the element */
+  }
+  
+  /* Optional: Hover effect for the toggle button (hamburger menu) */
+  .navbar-toggler {
+    transition: transform 0.3s ease;
+  }
+  
+  .navbar-toggler:hover {
+    transform: scale(1.1); /* Slightly scale up the toggle button on hover */
+  }
+  
