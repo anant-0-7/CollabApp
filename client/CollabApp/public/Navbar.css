@@ -1,6 +1,7 @@
 /* Remove the background color from the navbar */
 .navbar-container {
-    background-color: transparent !important; /* Make the navbar background transparent */
+    background-color: transparent !important;
+     /* Make the navbar background transparent */
   }
   
   /* Style the navbar itself to have no background */

@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Signup from './components/Signup';
 import All from "./components/All";
+import Create from "./components/Create";
 
 function App () {
   return (
@@ -16,6 +17,7 @@ function App () {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/all" element={<All />} />
+        <Route path = "/create" element={<Create />} />
       </Routes>
     </BrowserRouter>
   );
