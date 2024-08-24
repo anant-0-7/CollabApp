@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import "../../public/All.css";
 
 
-function All() {
+function All(props) {
 
     const projects = [
 

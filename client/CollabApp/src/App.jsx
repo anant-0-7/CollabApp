@@ -21,6 +21,31 @@ function App () {
     .then(({data})=>dispatch(userExists(data.UserData)))
     .catch((err)=>dispatch(userNotExists()))
   },[dispatch]);
+
+  const projects = [
+
+    {
+        title: "Lorem Ipsum",
+        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies.",
+        img: "https://picsum.photos/50"
+    },
+    {
+        title: "Lorem Ipsum",
+        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies.",
+        img: "https://picsum.photos/50"
+    },
+    {
+        title: "Lorem Ipsum",
+        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies.",
+        img: "https://picsum.photos/50"
+    },
+    {
+        title: "Lorem Ipsum",
+        summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies. Nullam nec purus nec nunc ultricies ultricies.",
+        img: "https://picsum.photos/50"
+    }
+]
+
   return (
 
     <BrowserRouter>
@@ -28,7 +53,7 @@ function App () {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<ProtectRoute user={!user} redirect='/all'><Login/></ProtectRoute>}/>
         <Route path="/signup" element={<ProtectRoute user={!user} redirect='/all'><Signup/></ProtectRoute>} />
-        <Route path="/all" element={<All />} />
+        <Route path="/all" element={<All projects = {projects}/>} />
         <Route path = "/create" element={<Create />} />
       </Routes>
     </BrowserRouter>

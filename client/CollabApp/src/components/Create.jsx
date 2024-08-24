@@ -50,7 +50,7 @@ function Create(){
                 <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="email" placeholder="Title" onChange={(e)=>setTitle(e.target.value)}/>
+                    <Form.Control type="text" placeholder="Title" onChange={(e)=>setTitle(e.target.value)}/>
 
                 </Form.Group>
 
