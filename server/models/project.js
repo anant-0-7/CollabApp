@@ -11,6 +11,16 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: ['true', 'Please add a summary']
   },
+  icon:{
+    public_id: {
+      type: String,
+      required: ['true', 'No public id provided']
+    },
+    url: {
+      type: String,
+      required: ['true', 'No url provided']
+    },
+  },
   members: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Student',

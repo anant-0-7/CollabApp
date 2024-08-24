@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import "../../public/Form.css"
+import { useDispatch } from 'react-redux';
+import { userExists } from '../redux/reducers/auth';
 
 function BasicExample() {
-
+    const dispatch=useDispatch();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
@@ -19,19 +21,25 @@ function BasicExample() {
         console.log(password);
     }
 
-    function submit(e){
+    async function submit (e){
         e.preventDefault();
-        axios.post('http://localhost:3000/user/login', {
-            username: username,
-            password: password
-        })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
+        const config={
+          withCredentials:true,
+          headers:{
+              "Content-Type":"application/json",
+          }
+        };
+        try{
+          const {data}=await axios.post(`http://localhost:3000/user/login`,{username:username,password:password},config);
+          dispatch(userExists(data.user));
+          
+
+        }
+        catch(e){
+          console.log(e);
+          
+        }
+      }
 
 
   return (
