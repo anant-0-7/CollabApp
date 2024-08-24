@@ -11,7 +11,7 @@ function Create(){
                 <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="email" placeholder="Title" />
+                    <Form.Control type="text" placeholder="Title" />
 
                 </Form.Group>
 
