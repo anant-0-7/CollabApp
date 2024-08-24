@@ -1,6 +1,8 @@
 import React from 'react';
+import "../public/App.css"
 import HomePage from "./components/HomePage";
-import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom';
+import Login from "./components/Login";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
 function App () {
   return (
@@ -8,6 +10,7 @@ function App () {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

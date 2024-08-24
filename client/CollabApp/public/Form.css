@@ -1,0 +1,17 @@
+/* Form.css */
+.form-container {
+    display: flex;
+    justify-content: center; /* Centers the form horizontally */
+    align-items: center; /* Centers the form vertically (if needed) */
+    min-height: 100vh;
+    color: #FBEAEB /* Ensures the form is centered vertically in the viewport */
+  }
+  
+  .form-wrapper {
+    width: 100%;
+    max-width: 500px; /* Adjust this to control the maximum width of the form */
+    padding: 20px; /* Optional padding for better spacing */
+    background: rgba(0, 0, 0, 0.2); /* Adds a semi-transparent background to the form */
+    border-radius: 10px; /* Rounds the corners of the form container */
+  }
+  

@@ -1,0 +1,8 @@
+html, body {
+    height: 100%;
+    margin: 0; /* Ensures no default margin around the body */
+  }
+  
+  body {
+    background: linear-gradient(112.1deg, rgb(32, 38, 57) 11.4%, rgb(63, 76, 119) 70.2%);
+  }
