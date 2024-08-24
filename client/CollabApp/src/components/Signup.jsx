@@ -3,29 +3,34 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import "../../public/Form.css"
+import { useDispatch } from 'react-redux';
+import { userExists } from '../redux/reducers/auth.js';
 
 function BasicExample() {
-
+    const dispatch=useDispatch();
     const[input, setInput] = useState({name: "", email: "", username: "", password: ""});
 
     function handleChange(event){
         setInput({...input, [event.target.name]: event.target.value});
     }
 
-    function submit(e){
+    async function submit(e){
+      const config={
+        withCredentials:true,
+        headers:{
+            "Content-Type":"application/json",
+        }
+      };
         e.preventDefault();
-        axios.post('http://localhost:3000/user/register', {
-            name: input.name,
-            email: input.email,
-            username: input.username,
-            password: input.password
-        })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        try{
+            const {data}=await axios.post(`http://localhost:3000/user/register`,{username:input.username,password:input.password,name:input.name,email:input.email},config);
+            dispatch(userExists(data.user));
+            
+        }
+        catch(e){
+            console.log(e);
+              
+        }
     }
 
 

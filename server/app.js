@@ -1,10 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import {v2 as cloudinary} from "cloudinary";
 import dotenv from "dotenv";
 import userRoute from "./routes/auth.js";
 const port = 3000;
+const corsOptions={
+    origin:["http://localhost:5173","http://localhost:4173"],
+    methods:["GET","POST","PUT","DELETE"],
+    transports:['websocket'],
+    credentials:true,
+};
 const app = express();
 dotenv.config({
     path:"./.env"
@@ -29,7 +36,7 @@ cloudinary.config({
     api_secret:process.env.CLOUD_API_SECRET
 
 });
-
+app.use(cors(corsOptions));
 app.use("/user",userRoute)
 
 

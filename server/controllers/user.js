@@ -1,4 +1,5 @@
 import Student from "../models/student.js";
+import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 import { tryCatch } from "../middlewares/error.js";
 import { ErrorHandler } from "../utility/utility.js";
@@ -33,7 +34,7 @@ const login=tryCatch(async(req,res,next)=>{
     const user=await Student.findOne({username}).select("+password");
     if(!user) return  next(new ErrorHandler("Invalid Username",400)); 
 
-    const isMatch=await compare(password,user.password);
+    const isMatch=password==user.password;
     if(!isMatch) return next(new ErrorHandler("Invalid Password",400));
     sendToken(res,user,200,`Welcome Back,${user.name}`);
     
