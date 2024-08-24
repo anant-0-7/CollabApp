@@ -7,10 +7,6 @@ const ProjectSchema = new mongoose.Schema({
     type: String,
     required: ['true', 'Please add a title']
   },
-  field: {
-    type: String,
-    required: ['true', 'Please add a field']
-  },
   summary: {
     type: String,
     required: ['true', 'Please add a summary']

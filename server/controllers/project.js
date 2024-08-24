@@ -4,21 +4,28 @@ import { ErrorHandler } from "../utility/utility";
 
 
 const createProject=tryCatch(async(req,res,next)=>{
-    const {title,summary,field,members}=req.body;
+    const {title,summary}=req.body;
+    members=[req.userId];
+    image=[];
+    
     
     await Project.create({
         title,
         summary,
-        field,
         members,
-        
+        image,
     })
+
+    return res.status(201).json({
+        success:true,
+        message:"Project Created",
+    });
 })
 
 
 const uploadAttachments=tryCatch(async(req,res,next)=>{
     
-    const {projectId}=req.body;
+    const projectId=req.params.id;
     const files=req.files ||[];
     
     if(files.length<1) return next(new ErrorHandler("Please Upload Attachments",400));
@@ -42,7 +49,52 @@ const uploadAttachments=tryCatch(async(req,res,next)=>{
     })
 })
 
+const leaveProject=tryCatch(async(req,res,next)=>{
+    const projectId=req.params.id;
+    const project =await Project.findById(projectId);
+    if(!project) return next(new ErrorHandler("Project not Found",404));
+    project.members=project.members.filter((i)=>i.toString()!== req.userId.toString());
+    const [user]=await project.save();
+
+    return res.status(200).json({
+        success:true,
+        message:"You left the group",
+    })
+
+
+})
+
+const getAllProjects=tryCatch(async(res,req,next)=>{
+    const projects=await Project.find().populate();
+    return res.status(200).json({
+        success:true,
+        data:projects,
+    })
+})
+
+const getMyProjects=tryCatch(async(req,res,next)=>{
+    const projects=await Project.find({members:{ "$in" : [req.userId]}});
+    return res.status(200).json({
+        success:true,
+        data:projects,
+    })
+})
+
+const joinProject=tryCatch(async(req,res,next)=>{
+    const projectId=req.params.id;
+    const project =await Project.findById(projectId);
+    if(!project) return next(new ErrorHandler("Project not Found",404));
+    project.members=[...project.members,req.userId];
+    project.save();
+
+    return res.status(200).json({
+        success:true,
+        message:"You Joined the Group",
+    })
+
+})
 
 
 
-export {uploadAttachments};
+
+export {uploadAttachments,createProject,leaveProject,getAllProjects,getMyProjects,joinProject};
