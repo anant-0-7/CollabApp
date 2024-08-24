@@ -1,24 +1,32 @@
 import express from "express";
 import { isAuthenticated } from "../controllers/user";
-import { uploadAttachments } from "../controllers/project";
+import { createProject, getAllProjects, getMyProjects, leaveProject, uploadAttachments } from "../controllers/project";
 
 
 const router=express.Router({mergeParams:true});
 
 router
-.route("/uploadfiles")
+.route("/:id/uploadfiles")
 .put(isAuthenticated,uploadAttachments)
 
 router
 .route("/createnew")
-.post(isAuthenticated,uploadAttachments)
+.post(isAuthenticated,createProject)
 
 router
-.route("/delete")
-.post(isAuthenticated,uploadAttachments)
+.route("/delete/:id")
+.post(isAuthenticated,leaveProject)
 
 router
-.route("/getproject")
-.get(isAuthenticated,uploadAttachments)
+.route("/getall")
+.get(isAuthenticated,getAllProjects)
 
+router
+.route("/getmy")
+.get(isAuthenticated,getMyProjects)
+
+
+router
+.route("/join/:id")
+.get(isAuthenticated,joinProject)
 export default router;
