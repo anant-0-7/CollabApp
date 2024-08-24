@@ -49,7 +49,7 @@ function BasicExample() {
             <Form.Control type="password" placeholder="Password"  onChange = {handlePassword}/>
           </Form.Group>
           <Button variant="primary" type="submit" onClick = {submit}>
-            Submit
+            Login
           </Button>
         </Form>
       </div>

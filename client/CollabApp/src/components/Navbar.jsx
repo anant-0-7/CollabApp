@@ -9,7 +9,7 @@ function NavigationBar(){
     return (<header>
 
     
-    <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="dark" bg = "dark">
+    <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Brand href="#home">CollabApp</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
