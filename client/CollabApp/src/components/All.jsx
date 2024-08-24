@@ -34,7 +34,7 @@ function All(props) {
         <Navbar />
       <div className="card-container">
         {projects.map((project, index) => {
-            return <Card key={index} title={project.title} summary={project.summary} img={project.img} id = {index} />
+            return <Card key={index} title={project.title} summary={project.summary} img={project.icon[0].url} id = {index} />
         })}
       </div>
     </div>
