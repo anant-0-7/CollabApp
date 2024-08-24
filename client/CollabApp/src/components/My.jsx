@@ -1,4 +1,4 @@
-import Card from "./Cards/Card_1";
+import Card from "./Cards/Card_2";
 import Navbar from "./Navbar";
 import "../../public/All.css";
 import { useEffect, useState} from "react";
@@ -21,7 +21,7 @@ function All(props) {
       };
       const myFetch=async()=>{
         try{
-          const {data}=await axios.get(`http://localhost:3000/project/getall`,config);
+          const {data}=await axios.get(`http://localhost:3000/project/getmy`,config);
           setProjects(data.data);
           
   

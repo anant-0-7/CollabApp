@@ -11,6 +11,7 @@ import axios from 'axios';
 import { userExists, userNotExists } from './redux/reducers/auth';
 import All from "./components/All";
 import Create from "./components/Create";
+import My from "./components/My";
 
 function App () {
 
@@ -32,6 +33,7 @@ function App () {
         <Route path="/signup" element={<ProtectRoute user={!user} redirect='/all'><Signup/></ProtectRoute>} />
         <Route path="/all" element={<All/>} />
         <Route path = "/create" element={<Create />} />
+        <Route path = "/my" element={<My />} />
       </Routes>
     </BrowserRouter>
   );
