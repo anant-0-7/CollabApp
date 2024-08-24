@@ -1,6 +1,7 @@
 import express from "express";
-import { isAuthenticated } from "../controllers/user";
-import { createProject, getAllProjects, getMyProjects, leaveProject, uploadAttachments } from "../controllers/project";
+import { isAuthenticated } from "../controllers/user.js";
+import { createProject, getAllProjects, getMyProjects, joinProject, leaveProject, uploadAttachments } from "../controllers/project.js";
+import { attachments } from "../middlewares/multer.js";
 
 
 const router=express.Router({mergeParams:true});
@@ -11,7 +12,7 @@ router
 
 router
 .route("/createnew")
-.post(isAuthenticated,createProject)
+.post(attachments,isAuthenticated,createProject)
 
 router
 .route("/delete/:id")

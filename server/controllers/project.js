@@ -1,19 +1,27 @@
-import { tryCatch } from "../middlewares/error";
-import Project from "../models/project";
-import { ErrorHandler } from "../utility/utility";
+import { tryCatch } from "../middlewares/error.js";
+import Project from "../models/project.js";
+import { uploadFilesClodinary } from "../utility/features.js";
+import { ErrorHandler } from "../utility/utility.js";
 
 
 const createProject=tryCatch(async(req,res,next)=>{
     const {title,summary}=req.body;
-    members=[req.userId];
-    image=[];
+    console.log(title,summary);
+    const files=req.files;
+
     
+ 
+    const members=[req.userId];
+    const image=[];
+  
+    const icon=await uploadFilesClodinary(files);
     
     await Project.create({
         title,
         summary,
         members,
         image,
+        icon,
     })
 
     return res.status(201).json({

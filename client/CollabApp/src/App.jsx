@@ -28,7 +28,7 @@ function App () {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<ProtectRoute user={!user} redirect='/all'><Login/></ProtectRoute>}/>
         <Route path="/signup" element={<ProtectRoute user={!user} redirect='/all'><Signup/></ProtectRoute>} />
-        <Route path="/all" element={<Navbar />} />
+        <Route path="/all" element={<All />} />
         <Route path = "/create" element={<Create />} />
       </Routes>
     </BrowserRouter>

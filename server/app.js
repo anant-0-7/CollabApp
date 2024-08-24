@@ -5,6 +5,7 @@ import cors from "cors";
 import {v2 as cloudinary} from "cloudinary";
 import dotenv from "dotenv";
 import userRoute from "./routes/auth.js";
+import projectRoute from "./routes/project.js";
 const port = 3000;
 const corsOptions={
     origin:["http://localhost:5173","http://localhost:4173"],
@@ -18,8 +19,9 @@ dotenv.config({
 })
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(cors(corsOptions));
 app.use(express.urlencoded({extended:true}));
+
 const url=process.env.MONGO_URL;
 const connectDB=async function(url) {
     await mongoose.connect(url,{dbName:"CollabApp"});
@@ -36,8 +38,9 @@ cloudinary.config({
     api_secret:process.env.CLOUD_API_SECRET
 
 });
-app.use(cors(corsOptions));
+
 app.use("/user",userRoute)
+app.use("/project",projectRoute)
 
 
 

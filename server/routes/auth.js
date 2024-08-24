@@ -1,5 +1,5 @@
 import express from "express";
-import { getMyProfile, isAuthenticated, login,newUser } from "../controllers/user.js";
+import { getMyProfile, isAuthenticated, login,logout,newUser } from "../controllers/user.js";
 
 
 
@@ -16,5 +16,9 @@ router
 router
 .route("/me")
 .get(isAuthenticated,getMyProfile)
+
+router
+.route("/logout")
+.get(isAuthenticated,logout)
 
 export default router;

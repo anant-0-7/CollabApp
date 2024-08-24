@@ -1,5 +1,4 @@
 import Student from "../models/student.js";
-import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 import { tryCatch } from "../middlewares/error.js";
 import { ErrorHandler } from "../utility/utility.js";
@@ -57,4 +56,12 @@ const getMyProfile=tryCatch(async(req,res,next)=>{
         UserData,
     })
 })
-export {login,newUser,getMyProfile,isAuthenticated};
+
+const logout=tryCatch(async(req,res)=>{
+    
+    return res.status(200).cookie("CollabApp-token","",{...cookieOptions,maxAge:0}).json({
+        success:true,
+        message:"Logged out successfully"
+    })
+})
+export {login,newUser,getMyProfile,isAuthenticated,logout};
