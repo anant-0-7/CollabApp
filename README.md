@@ -1,7 +1,7 @@
 
 ---
 
-# CollabApp
+# CollabDocs
 
 CollabApp is a platform designed to facilitate collaboration on various projects. Users can create, join, and contribute to different projects. A key feature of CollabApp is the ability to generate highlights for each project, providing a quick overview to help users decide whether they want to join. Additionally, joining a project requires a password, ensuring that only authorized users can contribute.
 
@@ -66,15 +66,11 @@ After setting up both the client and server, open your browser and navigate to:
 http://localhost:5173
 ```
 
-This will load the frontend of the CollabApp, where you can start exploring and collaborating on projects.
+This will load the frontend of the CollabDocs, where you can start exploring and collaborating on projects.
 
 ## Contributing
 
 Contributions are welcome! If you have any improvements or new features you'd like to add, feel free to fork the repository, make your changes, and submit a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
