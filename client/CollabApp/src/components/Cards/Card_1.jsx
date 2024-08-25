@@ -47,7 +47,7 @@ function BasicExample(props) {
 
     try {
       // Simulate API call with a timeout
-      const PROMPT = ", On the basis of the given title and summary, generate a summary in 150 words with bullet points.";
+      const PROMPT = ", On the basis of the given title and summary, generate a summary in 125 words with bullet points.";
       const title = props.title;
       const summary = props.summary;
       
