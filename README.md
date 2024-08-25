@@ -8,7 +8,7 @@ CollabApp is a platform designed to facilitate collaboration on various projects
 ## Features
 
 - **Project Collaboration**: Users can create and join projects, making it easy to collaborate with others.
-- **Project Highlights**: Each project can generate a summary to provide an overview, helping users quickly understand the project before joining.
+- **AI-Powered Project**: Each project can generate an AI-driven summary that offers an overview, giving users a clear understanding of the project's scope and goals before they commit to joining.
 - **Secure Access**: Projects are password-protected, ensuring that only authorized users can join and contribute.
 
 ## Getting Started
