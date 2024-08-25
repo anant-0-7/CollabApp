@@ -1,18 +1,20 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
+import Spinner from 'react-bootstrap/Spinner';
 import { useNavigate } from 'react-router-dom';
 import { useJoinProjectMutation } from '../../redux/api/api';
+import { AiChat } from "../../aiChat";
 
 function BasicExample(props) {
-  const [show, setShow] = useState(false); // State to control main modal visibility
-  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false); // State for password prompt
+  const [show, setShow] = useState(false);
+  const [showPasswordPrompt, setShowPasswordPrompt] = useState(false);
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false); // State for loading animation
   const navigate = useNavigate();
   const [highlight, setHighlight] = useState("");
-  const [joinProject]=useJoinProjectMutation();
+  const [joinProject] = useJoinProjectMutation();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,22 +26,15 @@ function BasicExample(props) {
     handlePasswordPromptShow();
   };
 
-  const handlePasswordSubmit = async() => {
-    
-    // You can add password validation logic here
-    if (password == props.password) { // Replace with actual validation
-      try{
-          const projectId=props.id;
-          const {data}=await joinProject(projectId);
-          navigate(0);
-          
-
+  const handlePasswordSubmit = async () => {
+    if (password === props.password) {
+      try {
+        const projectId = props.id;
+        const { data } = await joinProject(projectId);
+        navigate(0);
+      } catch (e) {
+        console.log(e);
       }
-      catch(e){
-        
-          console.log(e);
-      } 
-      
       handlePasswordPromptClose();
     } else {
       alert('Incorrect password. Please try again.');
@@ -48,7 +43,25 @@ function BasicExample(props) {
   };
 
   const generateHighlights = async () => {
-    
+    setIsLoading(true); // Show loading animation
+
+    try {
+      // Simulate API call with a timeout
+      const PROMPT = ", On the basis of the given title and summary, generate a summary in 150 words with bullet points.";
+      const title = props.title;
+      const summary = props.summary;
+      
+      // Ensure AiChat.sendMessage is a promise-returning function
+      const result = await AiChat.sendMessage("Title:" + title + " Summary:" + summary + PROMPT);
+      
+      // Assume result contains the response text from the API
+      setHighlight(JSON.parse(result.response.text()).summary);
+
+    } catch (error) {
+      console.error('Error generating highlights:', error);
+    } finally {
+      setIsLoading(false); // Hide loading animation
+    }
   }
 
   return (
@@ -85,7 +98,7 @@ function BasicExample(props) {
             />
             <div style={{ width: '60%' }}>
               <p>{props.summary}</p>
-              {highlight}
+              <p>{highlight}</p>
             </div>
           </div>
         </Modal.Body>
@@ -93,8 +106,15 @@ function BasicExample(props) {
           <Button variant="secondary" onClick={handleJoinProject}>
             Join Project
           </Button>
-          <Button variant="primary" onClick={() => navigate("/project/" + props.id)}>
-            Generate Highlights
+          <Button variant="primary" onClick={generateHighlights} disabled={isLoading}>
+            {isLoading ? (
+              <>
+                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" />
+                <span className="sr-only">Loading...</span>
+              </>
+            ) : (
+              'Generate Highlights'
+            )}
           </Button>
         </Modal.Footer>
       </Modal>
