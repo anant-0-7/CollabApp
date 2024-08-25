@@ -11,6 +11,15 @@ CollabApp is a platform designed to facilitate collaboration on various projects
 - **AI-Powered Project**: Each project can generate an AI-driven summary that offers an overview, giving users a clear understanding of the project's scope and goals before they commit to joining.
 - **Secure Access**: Projects are password-protected, ensuring that only authorized users can join and contribute.
 
+## Technologies Used
+
+CollabApp is built using the **MERN stack**:
+
+- **MongoDB**: For database management.
+- **Express.js**: For handling server-side logic.
+- **React.js**: For building the user interface.
+- **Node.js**: For running the server and managing backend operations.
+
 ## Getting Started
 
 Follow the instructions below to set up the application on your local machine.
