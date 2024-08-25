@@ -1,8 +1,10 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
+import { useJoinProjectMutation } from '../../redux/api/api';
 
 function BasicExample(props) {
   const [show, setShow] = useState(false); // State to control main modal visibility
@@ -10,6 +12,7 @@ function BasicExample(props) {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [highlight, setHighlight] = useState("");
+  const [joinProject]=useJoinProjectMutation();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,10 +24,22 @@ function BasicExample(props) {
     handlePasswordPromptShow();
   };
 
-  const handlePasswordSubmit = () => {
+  const handlePasswordSubmit = async() => {
+    
     // You can add password validation logic here
-    if (password === 'yourExpectedPassword') { // Replace with actual validation
-      navigate("/project/" + props.id);
+    if (password == props.password) { // Replace with actual validation
+      try{
+          const projectId=props.id;
+          const {data}=await joinProject(projectId);
+          navigate(0);
+          
+
+      }
+      catch(e){
+        
+          console.log(e);
+      } 
+      
       handlePasswordPromptClose();
     } else {
       alert('Incorrect password. Please try again.');

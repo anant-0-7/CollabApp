@@ -5,29 +5,37 @@ import { attachments } from "../middlewares/multer.js";
 
 
 const router=express.Router({mergeParams:true});
+router.use(isAuthenticated);
 
 router
-.route("/:id/uploadfiles")
-.put(isAuthenticated,uploadAttachments)
+.route("/uploadfiles")
+.post(attachments,uploadAttachments)
 
-router
-.route("/createnew")
-.post(attachments,isAuthenticated,createProject)
 
 router
 .route("/delete/:id")
-.post(isAuthenticated,leaveProject)
+.post(leaveProject)
 
 router
-.route("/getall")
-.get(isAuthenticated,getAllProjects)
-
-router
-.route("/getmy")
-.get(isAuthenticated,getMyProjects)
+.route("/createnew")
+.post(attachments,createProject)
 
 
 router
 .route("/join/:id")
-.get(isAuthenticated,joinProject)
+.post(joinProject)
+
+
+
+
+router
+.route("/getall")
+.get(getAllProjects)
+
+router
+.route("/getmy")
+.get(getMyProjects)
+
+
+
 export default router;

@@ -22,6 +22,7 @@ function All(props) {
       const myFetch=async()=>{
         try{
           const {data}=await axios.get(`http://localhost:3000/project/getmy`,config);
+          console.log(data.data);
           setProjects(data.data);
           
   
@@ -40,7 +41,7 @@ function All(props) {
         <Navbar />
       <div className="card-container">
         {projects.map((project, index) => {
-            return <Card key={index} title={project.title} summary={project.summary} img={project.icon[0].url} id = {index} />
+            return <Card key={index} title={project.title} summary={project.summary} img={project.icon[0].url} id = {project._id} files={project.image} />
         })}
       </div>
     </div>

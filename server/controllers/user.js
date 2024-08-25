@@ -6,11 +6,12 @@ import { ErrorHandler } from "../utility/utility.js";
 const cookieOptions={
     maxAge:24*60*60*1000*15,
     httpOnly:true,
-    sameSite:"none",
+    sameSite:"Lax",
     secure:true
 }
 const isAuthenticated=(req,res,next)=>{
     const token=req.cookies["CollabApp-token"];
+    console.log(token);
     if(!token)return next(new ErrorHandler("Please login to access this page",401));
     
     const decodedData=jwt.verify(token,process.env.JWT_SECRET);
@@ -20,6 +21,7 @@ const isAuthenticated=(req,res,next)=>{
 
 const sendToken=(res,user,code,message)=>{
     const token=jwt.sign({_id:user._id},process.env.JWT_SECRET);
+    console.log(token);
     return res.status(code).cookie("CollabApp-token",token,cookieOptions).json({
         success:true,
         user,
@@ -35,6 +37,7 @@ const login=tryCatch(async(req,res,next)=>{
 
     const isMatch=password==user.password;
     if(!isMatch) return next(new ErrorHandler("Invalid Password",400));
+    console.log(user);
     sendToken(res,user,200,`Welcome Back,${user.name}`);
     
     

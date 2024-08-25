@@ -17,11 +17,29 @@ const api=createApi({
             
         }),
         uploadAttachments:builder.mutation({
-            query:({projectId,data})=>({
-                url:`project/${projectId}/uploadfiles`,
+            query:(data)=>({
+                url:`project/uploadfiles`,
                 method:"POST",
                 credentials:"include",
                 body:data,
+            }),
+            
+        }),
+        deleteProject:builder.mutation({
+            query:(projectId)=>({
+                url:`project/delete/${projectId}`,
+                method:"POST",
+                credentials:"include",
+                
+            }),
+            
+        }),
+        joinProject:builder.mutation({
+            query:(projectId)=>({
+                url:`project/join/${projectId}`,
+                method:"POST",
+                credentials:"include",
+                
             }),
             
         }),
@@ -34,4 +52,4 @@ const api=createApi({
 
 
 export default api;
-export const {useSendAttachmentsMutation,useUploadAttachmentsMutation}=api;
+export const {useSendAttachmentsMutation,useUploadAttachmentsMutation,useDeleteProjectMutation,useJoinProjectMutation}=api;

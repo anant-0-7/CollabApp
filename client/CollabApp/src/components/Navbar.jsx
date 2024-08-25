@@ -5,18 +5,25 @@ import Button from 'react-bootstrap/Button';
 import "../../public/Navbar.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { userNotExists } from '../redux/reducers/auth';
 
 function NavigationBar() {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
+  const handleLogOut=async()=>{
+    try{
+        const {data}=await axios.get(`http://localhost:3000/user/logout`,{withCredentials:true});
+        dispatch(userNotExists());
+        navigate("/");
+        
 
-  const handleLogout = async () => {
-    try {
-      await axios.post('https://localhost:3000/user/logout'); 
-      navigate("/login");
-    } catch (error) {
-      console.error('Logout failed', error);
     }
-  };
+    catch(e){
+       
+        console.log(e);
+    }
+}
 
   return (
     <header>
@@ -33,7 +40,7 @@ function NavigationBar() {
               <Button variant="outline-light" onClick={() => navigate("/create")} className="me-2">
                 Create New Project
               </Button>
-              <Button variant="outline-danger" onClick={handleLogout}>
+              <Button variant="outline-danger" onClick={handleLogOut}>
                 Logout
               </Button>
             </Nav>

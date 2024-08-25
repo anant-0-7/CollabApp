@@ -30,7 +30,7 @@ const ProjectSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  image:[ {
+  image:[{
     public_id: {
       type: String,
       required: ['true', 'No public id provided']
