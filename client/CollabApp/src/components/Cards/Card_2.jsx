@@ -69,7 +69,7 @@ const handleUploadFiles=async(e)=>{
         console.log("k");
         if(res.data) {
           console.log("Files Uploaded");
-          navigate("/my");
+          navigate(0);
         }
       }
       catch(e){
